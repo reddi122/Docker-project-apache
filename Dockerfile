@@ -1,14 +1,11 @@
 # Step 1: Use the official Nginx image
-FROM nginx:latest
+FROM httpd:latest
 
 # Step 2: Copy your static files into the Nginx web directory
-COPY index.html /usr/share/nginx/html/index.html
+COPY index.html /usr/local/apache2/htdocs/
 
-# Step 3: Copy the Nginx configuration file
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Step 4: Expose port 80
+# Step 3: Expose port 80
 EXPOSE 80
 
-# Step 5: Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Explicit CMD (optional – already defined in base image)
+# CMD ["httpd-foreground"]
